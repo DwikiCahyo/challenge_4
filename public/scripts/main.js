@@ -13,6 +13,7 @@ class App {
   constructor() {
     this.form = document.querySelector("#search-form");
     this.result = document.querySelector("#result");
+    this.tanggal = document.getElementById("tanggal");
   }
 
   init() {
@@ -36,15 +37,19 @@ class App {
     const response = await fetch(
       "https://raw.githubusercontent.com/fnurhidayat/probable-garbanzo/main/data/cars.min.json"
     );
-    const body = this.populateCars(await response.json());
-    const formData = new FormData(e.target);
-    const tanggal = new Date(formData.get("tanggal")).getTime();
-    const date = formData.get("tanggal");
-    const driver = formData.getAll("driver");
-    console.log(date, driver);
+    const body = await response.json();
+    const bodyParse = this.populateCars(body);
+    console.log(body);
+    console.log(bodyParse);
+    // const formData = new FormData(e.target);
+    // const tanggal = new Date(formData.get("tanggal"));
+    const tanggal = this.tanggal.value;
+    console.log(tanggal);
+    // const driver = formData.getAll("driver");
+    // console.log(date, driver);
     //
-    const availableCars = body.filter((car) => car.availableAt === tanggal);
-    this.viewSearchResult(availableCars);
+    // const availableCars = body.filter((car) => car.availableAt === tanggal);
+    // this.viewSearchResult(availableCars);
   }
 
   async loadData() {

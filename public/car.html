@@ -111,12 +111,8 @@
               style="margin-top: -60px; z-index: 1"
             >
               <div class="col">
-                <label for="" class="form-label">Tipe Driver</label>
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  name="driver"
-                >
+                <label for="tipeDriver" class="form-label">Tipe Driver</label>
+                <select class="form-select mt-2" id="tipe-driver" required>
                   <option disabled selected hidden>Pilih Tipe Driver</option>
                   <option value="1">Dengan Sopir</option>
                   <option value="2">Tanpa Sope (Lepas Kunci)</option>
@@ -126,33 +122,39 @@
                 <label for="tanggal" class="form-label">Tanggal</label>
                 <input
                   id="tanggal"
-                  class="form-control"
+                  class="form-control mt-2"
                   type="date"
                   name="tanggal"
+                  required
                 />
               </div>
               <div class="col">
-                <label for="" class="form-label">Waktu Jemput/Ambil</label>
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <label for="waktuJemput" class="form-label"
+                  >Waktu Jemput/Ambil</label
+                >
+                <select class="form-select mt-2" id="waktuJemput" required>
+                  <option disabled selected hidden>Waktu Jemput / Ambil</option>
+                  <option value="08:00">08.00 WIB</option>
+                  <option value="09:00">09.00 WIB</option>
+                  <option value="10:00">10.00 WIB</option>
+                  <option value="11:00">11.00 WIB</option>
+                  <option value="12:00">12.00 WIB</option>
                 </select>
               </div>
               <div class="col">
-                <label for="exampleFormControlInput1" class="form-label"
+                <label for="penumpang" class="form-label"
                   >Jumlah Penumpang</label
                 >
                 <input
                   type="number"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                  class="form-control mt-2"
+                  id="penumpang"
                   placeholder="4 Penumpang"
+                  required
                 />
               </div>
-              <div class="col d-flex flex-column justify-content-end">
-                <button class="btn btn-success" type="submit">
+              <div class="col">
+                <button class="btn btn-success h-100" type="submit">
                   Cari Mobil
                 </button>
               </div>
@@ -169,8 +171,8 @@
             required
           />
           <button type="submit">Cari Mobil</button>
-        </form>
-      </section> -->
+        </form> -->
+      </section>
 
       <section id="result"></section>
     </main>
