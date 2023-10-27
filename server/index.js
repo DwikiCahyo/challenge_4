@@ -53,11 +53,20 @@ const server = http.createServer((req, res) => {
   const isImages = req.url.includes("images");
   const isScript = req.url.includes("scripts");
 
+  // if (isImages) {
+  //   const fileText = fs.readFileSync(
+  //     path.join(__dirname, "..", "public", req.url)
+  //   );
+  //   res.writeHead(200, { "Content-Type": "image/svg+xml" });
+  //   res.end(fileText);
+  //   return;
+  // }
+
   if (isImages) {
     const fileText = fs.readFileSync(
       path.join(__dirname, "..", "public", req.url)
     );
-    res.writeHead(200, { "Content-Type": "image/svg+xml" });
+    res.writeHead(200, { "Content-Type": "image/min.jpg" });
     res.end(fileText);
     return;
   }
@@ -103,4 +112,4 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(3002);
+server.listen(3000);

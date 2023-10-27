@@ -124,7 +124,6 @@
                   id="tanggal"
                   class="form-control mt-2"
                   type="date"
-                  name="tanggal"
                   required
                 />
               </div>
@@ -154,7 +153,11 @@
                 />
               </div>
               <div class="col">
-                <button class="btn btn-success h-100" type="submit">
+                <button
+                  class="btn btn-success h-100"
+                  type="submit"
+                  id="submit-button"
+                >
                   Cari Mobil
                 </button>
               </div>
@@ -174,7 +177,15 @@
         </form> -->
       </section>
 
-      <section id="result"></section>
+      <section id="result">
+        <div class="container">
+          <div
+            class="row row-cols-1 row-cols-sm-4 gx-0 gy-3 gx-sm-2 gy-sm-2"
+            id="col-card"
+          >
+            </div>
+          </div>
+        </div>
     </main>
     <footer id="footer">
       <section class="footer-section py-4 mt-5">
@@ -219,8 +230,10 @@
     </footer>
 
     <!-- <script src="scripts/app.example.js"></script> -->
-    <script src="scripts/car.example.js"></script>
-    <script src="scripts/binar.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="scripts/App.js"></script>
+    <script src="scripts/FilterResult.js"></script>
+    <script src="scripts/Car.js"></script>
+    <script src="scripts/Binar.js"></script>
+    <script src="scripts/Main.js"></script>
   </body>
 </html>
