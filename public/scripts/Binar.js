@@ -27,6 +27,19 @@ class Binar {
     };
   }
 
+  static formatToIDR(number) {
+    if (typeof number !== "number" || isNaN(number)) {
+      return "Invalid Number";
+    }
+
+    const formatter = new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+
+    return formatter.format(number);
+  }
+
   static populateCars = (cars) => {
     return cars.map((car) => {
       const isPositive = getRandomInt(0, 1) === 1;
@@ -39,6 +52,7 @@ class Binar {
       return {
         ...car,
         availableAt: this.dateAndHours(availableAt),
+        rentPerDay: this.formatToIDR(car.rentPerDay),
       };
     });
   };

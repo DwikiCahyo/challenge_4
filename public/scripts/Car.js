@@ -40,22 +40,23 @@ class Car {
   }
 
   render() {
-    return ` <div class="card">
+    return ` <div class="card" style = "max-height: "250px">
     <img
        src="${this.image}"
       alt="${this.manufacture}"
-       class="card-img-top w-100 "
+       class="card-img-top "
+       width = "100px"
+       height ="200px"
      />
     <div class="card-body">
       <p class="card-text">${this.type}</p>
        <h5 class="card-title mt-3">${this.rentPerDay} / hari</h5>
        <p>
-         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-         Accusamus quo voluptate unde
+         ${this.description}
        </p>
        <div class="d-flex">
          <img src="images/fi_users.svg" width="20px" height="20px" />
-         <p class="ms-2">4 Penumpang</p>
+         <p class="ms-2">${this.capacity}</p>
        </div>
        <div class="d-flex">
          <img
@@ -73,7 +74,7 @@ class Car {
          />
          <p class="ms-2">Tahun ${this.year}</p>
        </div>
-       <button class="btn btn-success">Pilih Mobil</button>
+       <button class="btn btn-success w-100">Pilih Mobil</button>
      </div>`;
   }
 }

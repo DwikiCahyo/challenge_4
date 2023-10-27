@@ -41,12 +41,26 @@ class FilterResult {
   }
 
   renderData() {
+    const colCard = document.createElement("div");
+    colCard.classList.add(
+      "row",
+      "row-cols-1",
+      "row-cols-sm-4",
+      "gx-0",
+      "gy-3",
+      "gx-sm-3",
+      "gy-sm-3"
+    );
+    const container = document.querySelector("#container-card");
+    console.log(container);
+
+    container.appendChild(colCard);
     Car.list.forEach((car) => {
       console.log(car);
-      const card = document.createElement("div");
-      card.classList.add("col");
-      this.content.appendChild(card);
-      card.innerHTML = car.render();
+      this.card = document.createElement("div");
+      this.card.classList.add("col");
+      this.card.innerHTML = car.render();
+      colCard.appendChild(this.card);
     });
   }
 }

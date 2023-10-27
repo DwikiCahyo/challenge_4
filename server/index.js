@@ -38,63 +38,38 @@ function notFound(res) {
   res.end(JSON.stringify({ message: "Not Found!" }));
 }
 
-// const contentTypeDefault = {
-//   ".css": "text/css",
-//   ".jpeg": "image/jpeg",
-//   ".jpg": "image/jpg",
-//   ".png": "image/png",
-//   ".js": "text/javascript",
-//   ".svg": "image/svg+xml",
-// };
-
 const server = http.createServer((req, res) => {
-  console.log(req.url);
-
-  const isImages = req.url.includes("images");
+  const isImage = req.url.includes("images");
   const isScript = req.url.includes("scripts");
 
-  // if (isImages) {
-  //   const fileText = fs.readFileSync(
-  //     path.join(__dirname, "..", "public", req.url)
-  //   );
-  //   res.writeHead(200, { "Content-Type": "image/svg+xml" });
-  //   res.end(fileText);
-  //   return;
-  // }
-
-  if (isImages) {
-    const fileText = fs.readFileSync(
-      path.join(__dirname, "..", "public", req.url)
-    );
-    res.writeHead(200, { "Content-Type": "image/min.jpg" });
-    res.end(fileText);
+  function svgFile() {
+    const svg = fs.readFileSync(path.join(__dirname, "..", "public", req.url));
+    res.writeHead(200, { "Content-Type": "image/svg+xml" });
+    res.end(svg);
     return;
+  }
+
+  function jpgFile() {
+    const jpg = fs.readFileSync(path.join(__dirname, "..", "public", req.url));
+    res.writeHead(200, { "Content-Type": "image/jpg" });
+    res.end(jpg);
+    return;
+  }
+
+  if (isImage) {
+    const image = path.extname(req.url);
+    const typeImage = image === ".svg" ? svgFile() : jpgFile();
+    return typeImage;
   }
 
   if (isScript) {
     const fileText = fs.readFileSync(
       path.join(__dirname, "..", "public", req.url)
     );
-    // console.log(fileText);
     res.writeHead(200, { "Content-Type": "text/javascripts" });
     res.end(fileText);
     return;
   }
-  // const publicFolder = ["css", "images", "scripts"];
-  // const isAccesingPublicFolder = publicFolder.some((folder) => {
-  //   return req.url.includes(folder);
-  // });
-
-  // if (isAccesingPublicFolder) {
-  //   const fileText = fs.readFileSync(
-  //     path.join(__dirname, "..", "public", req.url)
-  //   );
-  //   const extName = path.extname(req.url);
-  //   console.log(contentTypeDefault[extName]);
-  //   res.writeHead(200, { "Content-Type": contentTypeDefault[extName] });
-  //   res.end(fileText);
-  //   return;
-  // }
 
   switch (req.url) {
     case "/css/style.css":
@@ -112,4 +87,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(3000);
+server.listen(3000, () => {
+  console.log("Server running on port : " + 3000);
+});
