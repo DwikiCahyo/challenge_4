@@ -6,7 +6,6 @@ class App {
       document.getElementById("tanggal"),
       document.getElementById("waktuJemput"),
       document.getElementById("penumpang"),
-      document.getElementById("col-card"),
       document.querySelector("#result")
     );
   }

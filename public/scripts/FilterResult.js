@@ -1,9 +1,8 @@
 class FilterResult {
-  constructor(date, time, passengers, result, content) {
+  constructor(date, time, passengers, result) {
     this.date = date;
     this.time = time;
     this.passengers = passengers;
-    this.content = content;
     this.result = result;
   }
 
@@ -25,13 +24,15 @@ class FilterResult {
     this.renderData();
   }
 
-  filterCar(data, date, time, passengers) {
+  filterCar(data, inputDate, inputTime, inputPassengers) {
     const listCar = [];
+
     data.forEach((car) => {
+      const { date, hour } = car.availableAt;
       if (
-        car.availableAt.date === date &&
-        car.availableAt.hour <= time &&
-        car.capacity >= parseInt(passengers)
+        date === inputDate &&
+        hour <= inputTime &&
+        car.capacity >= parseInt(inputPassengers)
       ) {
         listCar.push(car);
       }

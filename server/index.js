@@ -42,23 +42,21 @@ const server = http.createServer((req, res) => {
   const isImage = req.url.includes("images");
   const isScript = req.url.includes("scripts");
 
-  function svgFile() {
-    const svg = fs.readFileSync(path.join(__dirname, "..", "public", req.url));
-    res.writeHead(200, { "Content-Type": "image/svg+xml" });
-    res.end(svg);
-    return;
-  }
-
-  function jpgFile() {
-    const jpg = fs.readFileSync(path.join(__dirname, "..", "public", req.url));
-    res.writeHead(200, { "Content-Type": "image/jpg" });
-    res.end(jpg);
+  function checkImageType(type) {
+    const pathImage = fs.readFileSync(
+      path.join(__dirname, "..", "public", req.url)
+    );
+    res.writeHead(200, { "Content-Type": `${type}` });
+    res.end(pathImage);
     return;
   }
 
   if (isImage) {
-    const image = path.extname(req.url);
-    const typeImage = image === ".svg" ? svgFile() : jpgFile();
+    const imageExt = path.extname(req.url);
+    const typeImage =
+      imageExt === ".svg"
+        ? checkImageType("image/svg+xml")
+        : checkImageType("image/jpg");
     return typeImage;
   }
 
