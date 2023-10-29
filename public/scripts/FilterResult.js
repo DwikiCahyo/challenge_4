@@ -6,22 +6,28 @@ class FilterResult {
     this.result = result;
   }
 
-  async loadData(e) {
+  async load() {
+    const data = await Binar.listCars();
+    Car.init(data);
+  }
+
+  resultData(e) {
     e.preventDefault();
     const date = this.date.value;
     const time = this.time.value;
     const passengers = this.passengers.value;
 
     //get all data
-    const data = await Binar.listCars();
+    const cars = Car.list;
+    console.log(cars);
 
     //filter data
-    const filterData = this.filterCar(data, date, time, passengers);
+    const filterData = this.filterCar(cars, date, time, passengers);
     console.log(filterData);
 
-    Car.init(filterData);
+    this.clearData();
 
-    this.renderData();
+    this.renderData(filterData);
   }
 
   filterCar(data, inputDate, inputTime, inputPassengers) {
@@ -41,7 +47,7 @@ class FilterResult {
     return listCar;
   }
 
-  renderData() {
+  renderData(filteredData) {
     const colCard = document.createElement("div");
     colCard.classList.add(
       "row",
@@ -56,12 +62,22 @@ class FilterResult {
     console.log(container);
 
     container.appendChild(colCard);
-    Car.list.forEach((car) => {
+    filteredData.forEach((car) => {
       console.log(car);
       this.card = document.createElement("div");
       this.card.classList.add("col");
       this.card.innerHTML = car.render();
       colCard.appendChild(this.card);
     });
+  }
+
+  clearData() {
+    let containerChild =
+      document.querySelector("#container-card").firstElementChild;
+    while (containerChild) {
+      containerChild.remove();
+      containerChild =
+        document.querySelector("#container-card").firstElementChild;
+    }
   }
 }

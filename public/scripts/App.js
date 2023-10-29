@@ -11,8 +11,9 @@ class App {
   }
 
   init() {
+    this.filterResult.load();
     this.submitButon.addEventListener("click", (e) =>
-      this.filterResult.loadData(e)
+      this.filterResult.resultData(e)
     );
   }
 }
