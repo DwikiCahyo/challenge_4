@@ -49,6 +49,14 @@ class FilterResult {
 
   renderData(filteredData) {
     const colCard = document.createElement("div");
+    const container = document.querySelector("#container-card");
+    const resultText = document.createElement("p");
+    resultText.innerText =
+      filteredData.length > 0
+        ? `${filteredData.length} mobil ditemukan`
+        : "Tidak ada mobil yang ditemukan";
+
+    container.appendChild(resultText);
     colCard.classList.add(
       "row",
       "row-cols-1",
@@ -58,10 +66,11 @@ class FilterResult {
       "gx-sm-3",
       "gy-sm-3"
     );
-    const container = document.querySelector("#container-card");
+
     console.log(container);
 
     container.appendChild(colCard);
+
     filteredData.forEach((car) => {
       console.log(car);
       this.card = document.createElement("div");

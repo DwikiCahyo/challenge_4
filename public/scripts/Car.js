@@ -40,7 +40,7 @@ class Car {
   }
 
   render() {
-    return ` <div class="card" style = "min-height:500px">
+    return ` <div class="card h-100 " >
     <img
        src="${this.image}"
       alt="${this.manufacture}"
